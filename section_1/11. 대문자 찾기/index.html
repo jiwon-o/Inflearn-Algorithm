@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = 0;
+
+        for (let x of s) {
+          if (x === x.toUpperCase()) {
+            answer++;
+          }
+        }
+        return answer;
+      }
+
+      function solution2(s) {
+        let answer = 0;
+
+        for (let x of s) {
+          let num = x.charCodeAt();
+          console.log(num);
+
+          if ("A".charCodeAt() <= num && num <= "Z".charCodeAt()) {
+            answer++;
+          }
+          //   if (65 <= num <= 90) {
+          //     console.log("*");
+          //   }
+        }
+        return answer;
+      }
+
+      let str = "KoreaTimeGood";
+      console.log(solution2(str));
+    </script>
+  </body>
+</html>

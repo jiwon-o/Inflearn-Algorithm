@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // filter: return한 값이 true가 되는 새로운 배열 생성
+
+      //   function filter(predicate, thisArg?){
+      //     let list=[];
+      //     for(let i=0; i<a.length; i++){
+      //         if(predicate(a[i], i)){
+      //             list.push(a[i]);
+      //         }
+      //     }
+      //     return list;
+      //   }
+
+      a = [10, 11, 12, 13, 14, 15];
+      let answer = a.filter(
+        function (v, i) {
+          return v % 2 == 0; // 참을 return하는 요소를 원소로 저장
+        },
+        [1, 2]
+      );
+      console.log(answer); // [10, 12, 14]
+
+      // use Arrow function
+      answer = a.filter((arr) => arr % 2 == 1);
+      console.log(answer);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // reduce: 배열을 하나씩 탐색하면서 콜백함수가 return한 값을 원소로 하는 새로운 배열을 생성
+
+      //   function reduce(predicate, value) {
+      //     let result = value; // 넘어온 값으로 초기화
+      //     for (let i = 0; i < a.length; i++) {
+      //       result = predicate(result, a[i]);
+      //     }
+      //     return result;
+      //   }
+
+      a = [10, 11, 12, 13, 14, 15];
+      let answer = a.reduce(function (acc, v) {
+        return acc + v;
+      }, 0);
+      console.log(answer); // 75 (10+11+12+13+14+15)
+
+      // use Arrow function
+      answer = a.reduce((arr, v) => arr + v, 0);
+      console.log(answer); // 75
+    </script>
+  </body>
+</html>

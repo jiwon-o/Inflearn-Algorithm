@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "";
+
+        if (s.length % 2 === 0) {
+          answer += s[parseInt(s.length / 2) - 1];
+          answer += s[parseInt(s.length / 2)];
+        } else {
+          answer += s[parseInt(s.length / 2)];
+        }
+
+        return answer;
+      }
+
+      function solution2(s) {
+        let answer;
+        let mid = Math.floor(s.length / 2); // 몫
+
+        if (s.length % 2 === 1) {
+          answer = s.substring(mid, mid + 1); // mid부터 mid+1 전까지
+        } else {
+          answer = s.substring(mid - 1, mid + 1);
+        }
+
+        return answer;
+      }
+
+      function solution3(s) {
+        let answer;
+        let mid = Math.floor(s.length / 2); // 몫
+
+        if (s.length % 2 === 1) {
+          answer = s.substr(mid, 1); // mid부터 1개
+        } else {
+          answer = s.substr(mid - 1, 2);
+        }
+
+        return answer;
+      }
+      console.log(solution3("length"));
+    </script>
+  </body>
+</html>

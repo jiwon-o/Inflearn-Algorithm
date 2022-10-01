@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 작은 두 변의 길이 합 > 나머지 변의 길이
+      function solution(a, b, c) {
+        let answer = "YES",
+          max;
+        let sum = a + b + c;
+        if (a > b) {
+          max = a;
+        } else {
+          max = b;
+        }
+        if (max < c) {
+          max = c;
+        }
+
+        if (sum - max <= max) {
+          answer = "NO";
+        }
+
+        return answer;
+      }
+
+      console.log(solution(13, 33, 17));
+    </script>
+  </body>
+</html>

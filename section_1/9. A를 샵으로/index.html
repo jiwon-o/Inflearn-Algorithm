@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "";
+
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === "A") {
+            answer += "#";
+          } else {
+            answer += s[i];
+          }
+        }
+        return answer;
+      }
+
+      function solution2(s) {
+        let answer = s; // string은 배열처럼 주소를 참조하는 것이 아니라 값이 복사 되는 것이다. 따라서 s를 변형한다고 해서 answer도 변형되지 않는다.
+        answer = answer.replace(/A/g, "#");
+
+        return answer;
+      }
+
+      let str = "BANANA";
+      console.log(solution2(str));
+    </script>
+  </body>
+</html>

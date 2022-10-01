@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = [];
+        // console.log(s.indexOf("time"));
+
+        for (let i = 0; i < s.length; i++) {
+          // console.log(s[i], i, s.indexOf(s[i]));
+          if (s.indexOf(s[i]) === i) {
+            answer.push(s[i]);
+          }
+        }
+
+        return answer;
+      }
+
+      function solution2(s) {
+        let answer;
+        // console.log(s.indexOf("time"));
+
+        answer = s.filter((v, i) => {
+          // console.log(v, i); // good 0, time 1, good 2, time 3, student 4
+          // if (s.indexOf(v) === i) {
+          //   return true; // true일때만 리턴되는 요소만 따로 빼서 배열을 만드는 것이 filter
+          // }
+
+          return s.indexOf(v) === i;
+        });
+
+        return answer;
+      }
+
+      let str = ["good", "time", "good", "time", "student"];
+      console.log(solution2(str));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // map: 배열을 하나씩 탐색하면서 콜백함수가 return한 값을 원소로 하는 새로운 배열을 생성
+
+      //   function map(predicate, thisArg?) {
+      //     let list = [];
+      //     for (let i = 0; i < a.length; i++) {
+      //       list.push(predicate(a[i], i));
+      //     }
+      //     return list;
+      //   }
+
+      a = [10, 11, 12, 13, 14, 15];
+      let answer = a.map(
+        function (v, i) {
+          return v * v;
+        },
+        [1, 2]
+      );
+      console.log(answer); // [100, 121, 144, 169, 196, 225]
+
+      // map으로 생성된 배열의 길이는 원본 배열의 길이와 같다.
+      answer = a.map((v, i) => {
+        if (v % 2 === 0) return v;
+      });
+      console.log(answer); // [10, undefined, 12, undefined, 14, undefined]
+
+      // use Arrow function
+      answer = a.map((arr) => arr / 2);
+      console.log(answer); // [5, 5.5, 6, 6.5, 7, 7.5]
+    </script>
+  </body>
+</html>
