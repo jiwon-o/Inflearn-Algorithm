@@ -5,8 +5,15 @@
   </head>
   <body>
     <script>
-      function solution(s) {
+      function solution(str) {
         let answer = "";
+
+        for (let i = 0; i < str.length; i++) {
+          // console.log(str[i], i, str.indexOf(str[i]));
+          if (i === str.indexOf(str[i])) {
+            answer += str[i];
+          }
+        }
 
         return answer;
       }
