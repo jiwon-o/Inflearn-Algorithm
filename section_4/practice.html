@@ -5,33 +5,41 @@
   </head>
   <body>
     <script>
-      function solution(m, product) {
+      function solution(arr) {
         let answer = 0;
-        let n = product.length;
-        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
-        for (let i = 0; i < n; i++) {
-          let money = m - (product[i][0] / 2 + product[i][1]);
-          let cnt = 1;
-          for (let j = 0; j < n; j++) {
-            if (j !== i && product[j][0] + product[j][1] > money) break;
-            if (j !== i && product[j][0] + product[j][1] <= money) {
-              money -= product[j][0] + product[j][1];
-              cnt++;
+        let m = arr.length;
+        let n = arr[0].length;
+
+        for (let i = 1; i <= n; i++) {
+          // i: 멘토가 될수 있는 경우
+          for (let j = 1; j <= n; j++) {
+            // j: 멘티가 될수 있는 경우
+            for (let k = 0; k < m; k++) {
+              let cnt = 0;
+              let pi, pj;
+              for (let s = 0; s < n; s++) {
+                if (arr[k][s] === i) {
+                  pi = arr[k][s];
+                } else if (arr[k][s] === j) {
+                  pj = arr[k][s];
+                }
+
+                if (pi < pj) cnt++;
+              }
+              if (cnt === 3) answer++;
             }
           }
-          answer = Math.max(answer, cnt);
         }
+
         return answer;
       }
 
       let arr = [
-        [6, 6],
-        [2, 2],
-        [4, 3],
-        [4, 5],
-        [10, 3],
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
       ];
-      console.log(solution(28, arr));
+      console.log(solution(arr));
     </script>
   </body>
 </html>
