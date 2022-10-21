@@ -5,7 +5,24 @@
   </head>
   <body>
     <script>
-      function solution(n, arr) {
+      function solution(m, arr) {
+        let answer = 0,
+          lt = 0,
+          sum = 0;
+
+        // 투포인트 알고리즘: O(n)
+        for (let rt = 0; rt < arr.length; rt++) {
+          sum += arr[rt];
+          if (sum === m) answer++;
+          while (sum >= m) {
+            sum -= arr[lt++];
+            if (sum === m) answer++;
+          }
+        }
+        return answer;
+      }
+
+      function solution_me(n, arr) {
         let answer = 0;
 
         // O(n^2)
@@ -18,23 +35,6 @@
             if (sum2 === n - sum) {
               answer++;
             }
-          }
-        }
-        return answer;
-      }
-
-      function solution2(n, arr) {
-        let answer = 0,
-          lt = 0,
-          sum = 0;
-
-        // 투포인트 알고리즘: O(n)
-        for (let rt = 0; rt < arr.length; rt++) {
-          sum += arr[rt];
-          if (sum === m) answer++;
-          while (sum >= m) {
-            sum -= arr[lt++];
-            if (sum === m) answer++;
           }
         }
         return answer;
