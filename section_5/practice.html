@@ -5,32 +5,33 @@
   </head>
   <body>
     <script>
-      function solution(s) {
-        let answer = "";
+      function solution(s1, s2) {
+        let answer = "YES";
 
-        let sH = new Map(); // String Hash
+        let sH = new Map();
 
-        for (let x of s) {
+        for (let x of s1) {
           if (sH.has(x)) {
             sH.set(x, sH.get(x) + 1);
           } else {
             sH.set(x, 1);
           }
         }
+        console.log(sH);
 
-        let max = Number.MIN_SAFE_INTEGER;
-        for (let [key, value] of sH) {
-          if (value > max) {
-            max = value;
-            answer = key;
+        for (let x of s2) {
+          if (!sH.has(x) || sH.get(x) === 0) {
+            return "NO";
           }
+          sH.set(x, sH.get(x) - 1);
         }
 
         return answer;
       }
 
-      let str = "BACBACCACCBDEDE";
-      console.log(solution(str));
+      let a = "AbaAeCe";
+      let b = "baeeACA";
+      console.log(solution(a, b));
     </script>
   </body>
 </html>
