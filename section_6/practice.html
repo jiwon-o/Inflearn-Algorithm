@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "YES";
+
+        let stack = [];
+
+        if (Math.floor(s.length / 2) % 2 === 1) return "NO";
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === "(") stack.push(s[i]);
+          else if (s[i] === ")") {
+            if (stack.length === 0) return "NO"; // ex) "(()))(" 판별
+            stack.pop();
+          }
+        }
+        if (stack.length !== 0) return "NO";
+        return answer;
+      }
+
+      let a = "(()(()))(()))";
+      console.log(solution(a));
+    </script>
+  </body>
+</html>

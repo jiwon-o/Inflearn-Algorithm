@@ -22,20 +22,20 @@
 
       function solution_me(k, arr) {
         let answer = 0;
-        let lt = 0;
         let sum = 0;
         let max = Number.MIN_SAFE_INTEGER;
 
-        for (let rt = lt + 2; rt < arr.length; rt++) {
-          sum = 0;
-          sum += arr[lt] + arr[lt + 1] + arr[rt];
-
-          if (sum >= max) {
-            max = sum;
-          }
-          lt++;
+        for (let i = 0; i < k; i++) {
+          sum += arr[i];
         }
-        answer = max;
+
+        for (let i = k; i < arr.length; i++) {
+          sum += arr[i] - arr[i - k];
+          if (max <= sum) {
+            max = sum;
+            answer = max;
+          }
+        }
 
         return answer;
       }
