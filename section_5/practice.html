@@ -7,11 +7,11 @@
     <script>
       function compareMaps(map1, map2) {
         if (map1.size !== map2.size) return false;
-        else {
-          for (let [key, val] of map1) {
-            if (!map2.has(key) || map2.get(key) !== val) return false;
-          }
+
+        for (let [key, val] of map2) {
+          if (!map1.has(key) || map1.get(key) !== val) return false;
         }
+
         return true;
       }
 
@@ -40,12 +40,11 @@
           if (sH.get(s[lt]) === 0) sH.delete(s[lt]);
           lt++;
         }
-
         return answer;
       }
 
       let a = "bacaAacba";
-      let b = "abc";
+      let b = "abca";
       console.log(solution(a, b));
     </script>
   </body>
