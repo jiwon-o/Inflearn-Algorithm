@@ -6,7 +6,15 @@
   <body>
     <script>
       function solution(arr) {
-        let answer = arr;
+        let answer = arr; // 얕은 복사(arr가 바뀌면 answer도 바뀐다.)
+
+        for (let i = 0; i < arr.length; i++) {
+          let idx = i;
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[idx] > arr[j]) idx = j;
+          }
+          [arr[idx], arr[i]] = [arr[i], arr[idx]]; // 최신 JS에서 지원
+        }
 
         return answer;
       }

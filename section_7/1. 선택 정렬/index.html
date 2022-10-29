@@ -5,14 +5,16 @@
   </head>
   <body>
     <script>
+      // 선택정렬: 최소값을 찾아 맨 앞 원소와 자리바꿈(맨 앞부터 정렬)
       function solution(arr) {
-        let answer = arr;
+        let answer = arr; // 얕은 복사(arr가 바뀌면 answer도 바뀜)
+
         for (let i = 0; i < arr.length; i++) {
           let idx = i;
           for (let j = i + 1; j < arr.length; j++) {
             if (arr[j] < arr[idx]) idx = j;
           }
-          [arr[i], arr[idx]] = [arr[idx], arr[i]];
+          [arr[i], arr[idx]] = [arr[idx], arr[i]]; // 최신 js에서 지원
         }
         return answer;
       }
