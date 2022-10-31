@@ -5,7 +5,7 @@
   </head>
   <body>
     <script>
-      // Least Recently Used
+      // Least Recently Used(카카오 캐시 문제 변형)
       function solution(size, arr) {
         let answer = Array.from({ length: size }, () => 0);
 
@@ -25,23 +25,53 @@
           answer[0] = x;
         });
 
-        function solution2(size, arr) {
-          let answer = [];
+        return answer;
+      }
 
-          arr.forEach((x) => {
-            let pos = -1;
-            for (let i = 0; i < size; i++) if (x === answer[i]) pos = i;
-            if (pos === -1) {
-              answer.unshift(x);
-              if (answer.length > size) answer.pop();
-            } else {
-              answer.splice(pos, 1);
-              answer.unshift(x);
+      function solution2(size, arr) {
+        let answer = [];
+
+        arr.forEach((x) => {
+          let pos = -1;
+          for (let i = 0; i < size; i++) {
+            if (x === answer[i]) pos = i;
+          }
+          if (pos === -1) {
+            answer.unshift(x);
+            if (answer.length > size) answer.pop();
+          } else {
+            answer.splice(pos, 1);
+            answer.unshift(x);
+          }
+        });
+
+        return answer;
+      }
+
+      function solution_me(size, arr) {
+        let answer = [];
+
+        arr.forEach((v) => {
+          let pos = -1;
+          for (let i = 0; i < size; i++) {
+            if (v === answer[i]) pos = i;
+          }
+
+          if (!answer.includes(v)) {
+            answer.unshift(v);
+            if (answer.length > size) {
+              answer.pop();
             }
-          });
-
-          return answer;
-        }
+            console.log(answer);
+          } else {
+            answer.splice(pos + 1, 1);
+            answer.unshift(v);
+            if (answer.length > size) {
+              answer.pop();
+            }
+            console.log(answer);
+          }
+        });
 
         return answer;
       }
