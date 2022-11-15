@@ -7,8 +7,7 @@
     <script>
       function solution(n, m) {
         let answer = [];
-        let tmp = Array.from({ length: m });
-
+        let tmp = Array.from({ length: m }, () => 0);
         function DFS(L) {
           if (L === m) {
             answer.push(tmp.slice());
@@ -19,8 +18,8 @@
             }
           }
         }
-        DFS(0);
 
+        DFS(0);
         return answer;
       }
 
