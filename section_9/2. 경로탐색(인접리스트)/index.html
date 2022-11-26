@@ -18,6 +18,13 @@
             answer++;
             console.log(path);
           } else {
+            // for (let i = 0; i < graph[v].length; i++) {
+            //   if (ch[graph[v][i]] === 0) {
+            //     ch[graph[v][i]] = 1;
+            //     DFS(graph[v][i]);
+            //     ch[graph[v][i]] = 0;
+            //   }
+            // }
             for (let nv of graph[v]) {
               if (ch[nv] === 0) {
                 path.push(nv);
