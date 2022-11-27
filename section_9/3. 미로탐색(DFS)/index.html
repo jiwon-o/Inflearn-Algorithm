@@ -7,25 +7,24 @@
     <script>
       function solution(board) {
         let answer = 0;
-        let n = board.length;
         let dx = [-1, 0, 1, 0];
         let dy = [0, 1, 0, -1];
-
-        function DFS(r, c) {
-          if (r === 6 && c === 6) {
-            answer++;
-          } else {
-            for (let i = 0; i < 4; i++) {
+        function DFS(x, y) {
+          if (x === 6 && y === 6) answer++;
+          else {
+            for (let k = 0; k < 4; k++) {
+              let nx = x + dx[k];
+              let ny = y + dy[k];
               if (
-                r + dx[i] >= 0 &&
-                r + dx[i] <= 6 &&
-                c + dy[i] >= 0 &&
-                c + dy[i] <= 6 &&
-                board[r + dx[i]][c + dy[i]] === 0
+                nx >= 0 &&
+                nx <= 6 &&
+                ny >= 0 &&
+                ny <= 6 &&
+                board[nx][ny] === 0
               ) {
-                board[r + dx[i]][c + dy[i]] = 1;
-                DFS(r + dx[i], c + dy[i]);
-                board[r + dx[i]][c + dy[i]] = 0;
+                board[nx][ny] = 1;
+                DFS(nx, ny);
+                board[nx][ny] = 0;
               }
             }
           }
