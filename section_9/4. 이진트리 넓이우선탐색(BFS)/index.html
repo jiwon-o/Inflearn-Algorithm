@@ -12,12 +12,15 @@
         while (queue.length) {
           let v = queue.shift();
           answer += v + " ";
+
+          //   if (v * 2 > 7 || v * 2 + 1 > 7) continue;
+          //   queue.push(v * 2);
+          //   queue.push(v * 2 + 1);
           for (let nv of [v * 2, v * 2 + 1]) {
             if (nv > 7) continue;
             queue.push(nv);
           }
         }
-
         return answer;
       }
 
