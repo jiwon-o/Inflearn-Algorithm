@@ -5,23 +5,32 @@
   </head>
   <body>
     <script>
-      function solution() {
-        let answer = "";
+      function solution(s, e) {
+        let answer = 0;
         let queue = [];
-        queue.push(1);
+        let ch = Array.from({ length: 10001 }, () => 0);
+        let dis = Array.from({ length: 10001 }, () => 0);
+
+        queue.push(s);
+        ch[s] = 1;
+        dis[s] = 0;
         while (queue.length) {
           let v = queue.shift();
-          answer += v + " ";
-          for (let nv of [v * 2, v * 2 + 1]) {
-            if (nv > 7) continue;
-            queue.push(nv);
+
+          for (let nv of [v + 1, v - 1, v + 5]) {
+            if (nv === e) return dis[v] + 1;
+            if (ch[nv] === 0) {
+              ch[nv] = 1;
+              dis[nv] = dis[v] + 1;
+              queue.push(nv);
+            }
           }
         }
 
         return answer;
       }
 
-      console.log(solution());
+      console.log(solution(8, 3));
     </script>
   </body>
 </html>
