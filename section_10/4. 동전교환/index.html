@@ -6,15 +6,18 @@
   <body>
     <script>
       function solution(m, coin) {
+        // 냅색 알고리즘 - dy[i]: i 금액을 거슬러주는데 사용된 최소 동전 개수
+        // DFS 완전탐색으로 푼다면 값이 커졌을 때 너무 오래 걸릴 수 있다.
         let answer = 0;
         let dy = Array.from({ length: m + 1 }, () => 1000);
         dy[0] = 0;
-        for (let i = 1; i < arr.length; i++) {
+        for (let i = 0; i < coin.length; i++) {
           for (let j = coin[i]; j <= m; j++) {
             dy[j] = Math.min(dy[j], dy[j - coin[i]] + 1);
           }
         }
         answer = dy[m];
+
         return answer;
       }
 
