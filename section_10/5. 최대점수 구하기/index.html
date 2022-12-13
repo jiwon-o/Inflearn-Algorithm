@@ -6,6 +6,8 @@
   <body>
     <script>
       function solution(m, arr) {
+        // 냅색 알고리즘 - dy[j]: j시간 안에 얻을 수 있는 최대 점수
+        // 동전교환 문제처럼 앞에서부터 하면 중복이 되므로 뒤에서부터 한다.
         let answer = 0;
         let dy = Array.from({ length: m + 1 }, () => 0);
         for (let i = 0; i < arr.length; i++) {
