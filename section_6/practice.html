@@ -5,27 +5,22 @@
   </head>
   <body>
     <script>
-      function solution(need, plan) {
+      function solution(s) {
         let answer = "YES";
-        let queue = plan.split("");
-
-        for (let x of need) {
-          while (x !== queue[0]) {
-            queue.shift();
-            if (!queue.includes(x)) return "NO";
+        stack = [];
+        for (let x of s) {
+          if (x === "(") stack.push(x);
+          else {
+            if (stack.length === 0) return "NO"; // ex) "(()))(" 판별
+            stack.pop();
           }
-          queue.push(queue.shift());
         }
-
-        console.log(queue);
-        if (queue.join("") !== need) return "NO";
-
+        if (stack.length > 0) return "NO";
         return answer;
       }
 
-      let a = "CBA";
-      let b = "CDGEB";
-      console.log(solution(a, b));
+      let a = "(()(()))(()";
+      console.log(solution(a));
     </script>
   </body>
 </html>
