@@ -5,24 +5,37 @@
   </head>
   <body>
     <script>
-      function solution(s) {
-        let answer = 0;
-        let stack = [];
+      function solution(n, k) {
+        let answer;
+        let queue = Array.from({ length: n }, (v, i) => i + 1);
 
-        for (let i = 0; i < s.length; i++) {
-          if (s[i] === "(") stack.push("(");
-          else {
-            stack.pop();
-            if (s[i - 1] === "(") answer += stack.length;
-            else answer++;
-            //stack.pop(); // 이 위치에 하면 레이저까지 카운팅한다.
-          }
+        while (queue.length) {
+          // queue.length가 0이 되면 종료
+          for (let i = 1; i < k; i++) queue.push(queue.shift());
+          queue.shift();
+          if (queue.length === 1) answer = queue.shift();
         }
         return answer;
       }
 
-      let a = "()(((()())(())()))(())";
-      console.log(solution(a));
+      function solution_me(n, k) {
+        let answer;
+        let queue = Array.from({ length: n }, (v, i) => i + 1);
+        let tmp = 1;
+
+        while (queue.length !== 1) {
+          if (tmp === k) {
+            queue.shift();
+            tmp = 1;
+          }
+          queue.push(queue.shift());
+          tmp++;
+        }
+        answer = queue[0];
+        return answer;
+      }
+
+      console.log(solution(8, 3));
     </script>
   </body>
 </html>
