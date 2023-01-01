@@ -5,39 +5,23 @@
   </head>
   <body>
     <script>
-      function count(stable, dist) {
-        let ep = stable[0]; // 말을 넣은 마지막 마구간
-        let cnt = 1; // 말의 수
-        for (let i = 0; i < stable.length; i++) {
-          if (stable[i + 1] - ep >= dist) {
-            cnt++;
-            ep = stable[i + 1];
-          }
-        }
-        return cnt;
-      }
-      function solution(c, stable) {
-        let answer = Number.MIN_SAFE_INTEGER;
+      function solution(arr) {
+        // 버블 정렬: 이웃한 두 수끼리 비교하여 정렬(맨 마지막 원소부터 정렬)
+        let answer = arr;
 
-        stable.sort((a, b) => a - b);
-        let lt = 1;
-        let rt = stable[stable.length - 1];
-
-        while (lt <= rt) {
-          let mid = parseInt((lt + rt) / 2);
-          if (count(stable, mid) < c) {
-            rt = mid - 1;
-          } else {
-            answer = mid;
-            lt = mid + 1;
+        for (let i = 0; i < arr.length - 1; i++) {
+          for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
           }
         }
 
         return answer;
       }
 
-      let arr = [1, 2, 8, 4, 10];
-      console.log(solution(3, arr));
+      let arr = [13, 5, 11, 7, 23, 15];
+      console.log(solution(arr));
     </script>
   </body>
 </html>
