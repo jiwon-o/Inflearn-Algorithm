@@ -5,33 +5,36 @@
   </head>
   <body>
     <script>
-      // 구글 인터뷰(정렬을 사용하여)
       function solution(arr) {
+        // 앞에서부터 차례대로 이미 정렬된 배열 부분과 비교하여, 자신의 위치를 찾아 삽입(손 안의 카드를 정렬하는 방법과 유사)
         let answer = arr;
-
-        for (let i = 0; i < arr.length - 1; i++) {
-          for (let j = 0; j < arr.length - i - 1; j++) {
-            if (arr[j] > 0 && arr[j + 1] < 0) {
-              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-            }
+        for (let i = 1; i < arr.length; i++) {
+          let tmp = arr[i];
+          let j;
+          for (j = i - 1; j >= 0; j--) {
+            if (arr[j] > tmp) arr[j + 1] = arr[j];
+            else break;
           }
+          arr[j + 1] = tmp;
         }
         return answer;
       }
 
       function solution2(arr) {
         let answer = [];
-
-        for (let x of arr) {
-          if (x < 0) answer.push(x);
-        }
-        for (let x of arr) {
-          if (x > 0) answer.push(x);
+        answer.push(arr[0]);
+        for (let i = 1; i < arr.length; i++) {
+          for (let j = 0; j < answer.length; j++) {
+            if (arr[i] < answer[j]) {
+              answer.splice(j, 0, arr[i]);
+              break;
+            }
+          }
         }
         return answer;
       }
 
-      let arr = [1, 2, 3, -3, -2, 5, 6, -6];
+      let arr = [11, 7, 5, 6, 10, 9];
       console.log(solution(arr));
     </script>
   </body>
