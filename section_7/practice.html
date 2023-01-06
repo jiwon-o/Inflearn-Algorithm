@@ -5,79 +5,21 @@
   </head>
   <body>
     <script>
-      // Least Recently Used(카카오 캐시 문제 변형)
-      function solution(size, arr) {
-        let answer = Array.from({ length: size }, () => 0);
-
-        arr.forEach((x) => {
-          let pos = -1;
-          for (let i = 0; i < size; i++) if (x === answer[i]) pos = i;
-          if (pos === -1) {
-            for (let i = size - 1; i >= 1; i--) {
-              answer[i] = answer[i - 1];
-            }
-          } else {
-            for (let i = pos; i >= 1; i--) {
-              answer[i] = answer[i - 1];
-            }
-          }
-
-          answer[0] = x;
-        });
-
-        return answer;
-      }
-
-      function solution2(size, arr) {
+      function solution(arr) {
         let answer = [];
 
-        arr.forEach((x) => {
-          let pos = -1;
-          for (let i = 0; i < size; i++) {
-            if (x === answer[i]) pos = i;
-          }
-          if (pos === -1) {
-            answer.unshift(x);
-            if (answer.length > size) answer.pop();
-          } else {
-            answer.splice(pos, 1);
-            answer.unshift(x);
-          }
-        });
+        let arr_copy = [...arr]; // 깊은 복사
+        // let arr_copy = arr.slice(); // 깊은 복사지만 arr 안에 부분 배열이 있을 시 얕은 복사
+        arr_copy.sort((a, b) => a - b);
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] !== arr_copy[i]) answer.push(i + 1);
+        }
 
         return answer;
       }
 
-      function solution_me(size, arr) {
-        let answer = [];
-
-        arr.forEach((v) => {
-          let pos = -1;
-          for (let i = 0; i < size; i++) {
-            if (v === answer[i]) pos = i;
-          }
-
-          if (!answer.includes(v)) {
-            answer.unshift(v);
-            if (answer.length > size) {
-              answer.pop();
-            }
-            console.log(answer);
-          } else {
-            answer.splice(pos + 1, 1);
-            answer.unshift(v);
-            if (answer.length > size) {
-              answer.pop();
-            }
-            console.log(answer);
-          }
-        });
-
-        return answer;
-      }
-
-      let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
-      console.log(solution(5, arr));
+      let arr = [120, 125, 152, 130, 135, 135, 143, 127, 160];
+      console.log(solution(arr));
     </script>
   </body>
 </html>
