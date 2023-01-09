@@ -5,38 +5,41 @@
   </head>
   <body>
     <script>
-      function solution(times) {
-        let answer = Number.MIN_SAFE_INTEGER;
-        let timeline = [];
+      function solution(c, arr) {
+        let answer;
 
-        for (let x of times) {
-          timeline.push([x[0], "s"]);
-          timeline.push([x[1], "e"]);
-        }
+        arr.sort((a, b) => a - b);
+        let lt = 1; // 최소 거리
+        let rt = arr[arr.length - 1] - arr[0]; // 8 최대 거리
 
-        timeline.sort((a, b) => {
-          if (a[0] === b[0]) return a[1].charCodeAt() - b[1].charCodeAt();
-          else return a[0] - b[0];
-        });
+        console.log(arr);
 
-        let cnt = 0;
-        for (let x of timeline) {
-          if (x[1] === "s") cnt++;
-          else cnt--;
-          answer = Math.max(answer, cnt);
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2);
+          let cnt = 1;
+          let ep = arr[0];
+          for (let i = 1; i < arr.length; i++) {
+            if (arr[i] - ep >= mid) {
+              cnt++;
+              ep = arr[i];
+            }
+          }
+
+          if (cnt < c) {
+            rt = mid - 1;
+          } else {
+            answer = mid;
+            lt = mid + 1;
+          }
         }
 
         return answer;
       }
 
-      let arr = [
-        [14, 18],
-        [12, 15],
-        [15, 20],
-        [20, 30],
-        [5, 14],
-      ];
-      console.log(solution(arr));
+      let arr = [1, 2, 8, 4, 9];
+      console.log(solution(3, arr));
     </script>
   </body>
 </html>
+
+11
