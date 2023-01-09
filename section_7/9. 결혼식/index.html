@@ -29,6 +29,29 @@
         return answer;
       }
 
+      function solution_me(arr) {
+        let answer = 1;
+        let max = Number.MIN_SAFE_INTEGER;
+
+        arr.sort((a, b) => {
+          if (a[0] === b[0]) return a[1] - b[0];
+          return a[0] - b[0];
+        });
+
+        let et = arr[0][1];
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i][0] < et) {
+            answer++;
+            max = Math.max(answer, max);
+          } else {
+            et = arr[i][1];
+            answer = 1;
+          }
+        }
+        answer = max;
+        return answer;
+      }
+
       let arr = [
         [14, 18],
         [12, 15],
