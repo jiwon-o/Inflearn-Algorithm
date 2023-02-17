@@ -5,24 +5,22 @@
   </head>
   <body>
     <script>
-      function solution(arr) {
+      function solution(m, coin) {
         let answer = 0;
-        let dy = Array.from({ length: arr.length }, () => 0);
-        dy[0] = 1;
-        for (let i = 1; i < arr.length; i++) {
-          let max = 0;
-          for (let j = i - 1; j >= 0; j--) {
-            if (arr[j] < arr[i] && dy[j] > max) {
-              max = dy[j];
-            }
+        let dy = Array.from({ length: m + 1 }, () => 1000);
+        dy[0] = 0;
+        for (let i = 0; i < coin.length; i++) {
+          for (let j = coin[i]; j <= m; j++) {
+            dy[j] = Math.min(dy[j], dy[j - coin[i]] + 1);
           }
-          dy[i] = max + 1;
-          answer = Math.max(answer, dy[i]);
         }
+        answer = dy[m];
+
         return answer;
       }
-      let arr = [5, 3, 7, 8, 6, 2, 9, 4];
-      console.log(solution(arr));
+
+      let arr = [1, 2, 5];
+      console.log(solution(15, arr));
     </script>
   </body>
 </html>
