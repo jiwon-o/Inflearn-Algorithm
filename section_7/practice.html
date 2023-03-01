@@ -5,34 +5,29 @@
   </head>
   <body>
     <script>
-      function solution(c, arr) {
-        let answer;
-
-        arr.sort((a, b) => a - b);
-        let lt = 1; // 최소 거리
-        let rt = arr[arr.length - 1] - arr[0]; // 8 최대 거리
-
-        console.log(arr);
-
-        while (lt <= rt) {
-          let mid = parseInt((lt + rt) / 2);
-          let cnt = 1;
-          let ep = arr[0];
-          for (let i = 1; i < arr.length; i++) {
-            if (arr[i] - ep >= mid) {
-              cnt++;
-              ep = arr[i];
-            }
-          }
-
-          if (cnt < c) {
-            rt = mid - 1;
-          } else {
-            answer = mid;
-            lt = mid + 1;
+      function count(stable, dist) {
+        let cnt = 1;
+        let ep = stable[0];
+        for (let i = 1; i < stable.length; i++) {
+          if (stable[i] - ep >= dist) {
+            cnt++;
+            ep = stable[i];
           }
         }
-
+        return cnt;
+      }
+      function solution(c, arr) {
+        let answer;
+        arr.sort((a, b) => a - b);
+        let lt = 1;
+        let rt = arr[arr.length - 1];
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2);
+          if (count(arr, mid) >= c) {
+            answer = mid;
+            lt = mid + 1;
+          } else rt = mid - 1;
+        }
         return answer;
       }
 
